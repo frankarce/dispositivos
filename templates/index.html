@@ -2,26 +2,35 @@
 <html>
 <head>
     <title>{{ id }}</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://vjs.zencdn.net/c/video.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        temporal="";
+        temporal="1";
         setInterval(function() {
-            $(document).ready(
-                    function(){
                         $.ajax({
-                            url : 'http://192.168.1.103:8000/device/{{ id }}',
-                            dataType : "json",
-                            type: "GET",
+                            url:'/device/{{ id }}',
+                            dataType :"json",
+                            type:"GET",
+                            cache:false,
                             success: function(data){
                                 var tempo=data.url;
                                 var event=data.reproduce;
+                                var tipo=data.tipo;
                                 var videos=document.getElementById('video');
-
                                 if (tempo!=temporal){
                                     var video = $("#video");
-                                    video.attr("src",tempo);
-                                    temporal=tempo;
+                                    var imagen = $("#imagen");
+                                    if (tipo=="imagen"){
+                                        video.hide();
+                                        imagen.attr("src",tempo);
+                                        document.getElementById('video').pause();
+                                        temporal=tempo;
+                                    }
+                                    if((tipo=="audio") || (tipo=="video")){
+                                        imagen.hide();
+                                        video.attr("src",tempo);
+                                        temporal=tempo;
+                                    }
                                 }
                                 if (event=="play"){
                                     document.getElementById('video').play();
@@ -40,16 +49,20 @@
                                 console.log("Error");
                             }
                         });
-                    }
-            );
+
+
+
         }, 100);
     </script>
 
 
 </head>
+
 <body>
 
-<video  id="video" src="" controls="" autoplay="" >
+<img id="imagen" src="">
+<video  id="video" src="" controls="" autoplay="" loop="">
+
 </video>
 </body>
 </html>

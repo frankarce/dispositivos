@@ -1,12 +1,14 @@
-from django.conf.urls import patterns, include, url
-from dispo.views import  index , device, indexlocal
+from django.conf.urls import patterns, url
+
+from dispo.views import index, device #, indexlocal
+
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
     url (r'^index/(?P<id>\w+)$', index ),
-    url (r'^indexlocal/(?P<id>\w+)$', indexlocal ),
+    #url (r'^indexlocal/(?P<id>\w+)$', indexlocal ),
     url (r'^device/(?P<id>\w+)$', device ),
     # Examples:
     # url(r'^$', 'dispositivos.views.home', name='home'),
