@@ -8,7 +8,8 @@ def device(request,id):
     inform=redis.Redis("localhost")
     a=inform.get(id)
     b=a.split(",")
-    data=({"url":b[0],"reproduce":b[1]})
+    data=({"url":b[0],"reproduce":b[1],"tipo":b[2]})
+
     if(b[1]=="restart"):
         inform.set(id,b[0]+",play")
     print b[0]
