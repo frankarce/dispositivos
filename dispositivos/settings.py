@@ -107,7 +107,7 @@ ROOT_URLCONF = 'dispositivos.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dispositivos.wsgi.application'
 
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__),'/Users/frank/Dropbox/PycharmProjects/dispositivos/dispositivos/templates/html/'),)
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__),'/Users/frank/Desktop/dispositivos/dispositivos/templates/html/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
