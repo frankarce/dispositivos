@@ -14,20 +14,24 @@
                             cache:false,
                             success: function(data){
                                 var tempo=data.url;
+
                                 var event=data.reproduce;
                                 var tipo=data.tipo;
-                                var videos=document.getElementById('video');
+
                                 if (tempo!=temporal){
                                     var video = $("#video");
                                     var imagen = $("#imagen");
                                     if (tipo=="imagen"){
+                                        imagen.show();
                                         video.hide();
                                         imagen.attr("src",tempo);
                                         document.getElementById('video').pause();
                                         temporal=tempo;
                                     }
                                     if((tipo=="audio") || (tipo=="video")){
+                                        video.show();
                                         imagen.hide();
+
                                         video.attr("src",tempo);
                                         temporal=tempo;
                                     }
@@ -60,8 +64,8 @@
 
 <body>
 
-<img id="imagen" src="">
-<video  id="video" src="" controls="" autoplay="" loop="">
+<img id="imagen" src="" width="1400" height="880">
+<video  id="video" src="" controls="" autoplay="" loop="" width="2500" height="1400"  >
 
 </video>
 </body>
