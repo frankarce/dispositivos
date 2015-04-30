@@ -3,6 +3,7 @@ import os
 
 def relative_project_path(*x):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
+# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -23,6 +24,11 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# from os.path import join
+# TEMPLATE_DIRS = (
+#     join(BASE_DIR,  'templates'),
+# )
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -107,7 +113,7 @@ ROOT_URLCONF = 'dispositivos.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dispositivos.wsgi.application'
 
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__),'/Users/frank/Dropbox/PycharmProjects/dispositivos/dispositivos/templates/html/'),)
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__),'/Users/frank/Dropbox/porsi las moscas/dispositivos/templates/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',

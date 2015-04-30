@@ -5,7 +5,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 ipmaster="127.0.0.1"
 def device(request,id):
 
-    inform=redis.Redis("localhost")
+    inform=redis.Redis("11.0.0.2")
     a=inform.get(id)
 
     b=eval(a)

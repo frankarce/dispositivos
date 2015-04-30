@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title></title>
+    <script src="/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="/static/css/radio.css">
+
+</head>
+<body>
+
+<form id="datos" class="form-actions">
+
+
+    <div>
+        <h2>Usuarios conectados</h2><br>
+        <p>
+           <input type="radio" name="option" value="1"> Uno<br>
+           <input type="radio" name="option" value="2"> Dos<br>
+           <input type="radio" name="option" value="3"> Mas de 2<br>
+           </p>
+        <br>
+    </div>
+    <p align="center">
+        <input type="reset" name="Reset" value="Borrar" class="btn btn-danger">
+        <input type="submit" name="Submit" value="Enviar" class="btn btn-primary">
+
+    </p>
+
+
+
+</form>
+
+</body>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                    // Only send the token to relative URLs i.e. locally.
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            }
+        });
+
+
+        $("#datos").submit(function(e){
+            e.preventDefault();
+
+            var dataString = $("#datos").serialize();
+
+            //alert(dataString);
+            console.log(dataString);
+            console.log("Entrando a ajax");
+
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8080/coordinador/",
+                data: dataString,
+                dataType: "json",
+                contentType:"application/json",
+                success: function(data) {
+
+
+
+                    //alert(data.name);
+                    console.log('si funciona ');
+
+
+                }
+
+            });
+
+            console.log("saliendo de ajax");
+
+
+
+        });
+
+
+
+
+
+    });
+</script>
+<!-- END JQUERY-->
+</html>

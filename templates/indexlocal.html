@@ -2,36 +2,34 @@
 <html>
 <head>
     <title>{{ id }}</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     <script type="text/javascript">
-        temporal="1";
+        temporal="";
         setInterval(function() {
-                        $.ajax({
-                            url:'/device/{{ id }}',
-                            dataType :"json",
-                            type:"GET",
-                            cache:false,
+            $(document).ready(function() {
+                $.ajax({
+
+                            url : 'http://127.0.0.1:8000/device/{{ ide }}',
+                            dataType : "json",
+                            type: "GET",
                             success: function(data){
                                 var tempo=data.url;
-
                                 var event=data.reproduce;
                                 var tipo=data.tipo;
-
+                                var videos=document.getElementById('video');
+                                alert("12qw");
                                 if (tempo!=temporal){
                                     var video = $("#video");
                                     var imagen = $("#imagen");
                                     if (tipo=="imagen"){
-                                        imagen.show();
                                         video.hide();
+
                                         imagen.attr("src",tempo);
-                                        document.getElementById('video').pause();
                                         temporal=tempo;
                                     }
                                     if((tipo=="audio") || (tipo=="video")){
-                                        video.show();
                                         imagen.hide();
-
                                         video.attr("src",tempo);
                                         temporal=tempo;
                                     }
@@ -54,21 +52,17 @@
                             }
                         });
 
+             }
 
-
+            );
         }, 100);
     </script>
 
 
 </head>
-
 <body>
-<center>
-<img id="imagen" src="" width="1490" height="850">
 
-<video  id="video" src="" controls="" autoplay="" loop="" width="2500" height="1400"  >
-
+<video  id="video" src="" controls="" autoplay="" >
 </video>
-</center>
 </body>
 </html>
